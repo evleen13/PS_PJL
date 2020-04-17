@@ -1,0 +1,8 @@
+use mongotest
+switched to db mongotest
+
+db.employee.insertOne({fname: "Max", salary:[10000,10000,15000,20000,20000,20000,10000,10000,15000,20000,20000,20000,] , city: "Pune"})
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("5e995f21c2effb00b597af85")
+}
