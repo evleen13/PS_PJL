@@ -1,0 +1,642 @@
+use mongotest
+switched to db mongotest
+
+db.employee.insertOne({fname: "Max", salary:[10000,10000,15000,20000,20000,20000,10000,10000,15000,20000,20000,20000,] , city: "Pune"})
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("5e995f21c2effb00b597af85")
+}
+db.employee.insertOne({fname: "Maxi", salary:[12000,10000,15000,20000,20000,20000,10000,10000,15000,20000,20000,20000,] , city: "Gurgaon"})
+db.employee.insertOne({fname: "Evleen", salary:[12000,12000,15000,20000,20000,20000,10000,10000,15000,20000,20000,20000,] , city: "Bengaluru"})
+db.employee.insertOne({fname: "Saurav", salary:[60000,10000,15000,20000,25000,20000,10000,10000,15000,20000,20000,20000,] , city: "Gurgaon"})
+db.employee.insertOne({fname: "Amey", salary:[12000,13000,19000,20000,20000,20000,10000,10000,15000,20000,20000,20000,] , city: "Mumbai"})
+db.employee.insertOne({fname: "Yash", salary:[6000,13000,19000,20000,20000,20000,10000,10000,15000,20000,20000,20000,] , city: "Mumbai"})
+db.employee.insertOne({fname: "Aadesh", salary:[12000,13000,19000,20000,20000,20000,10000,10000,15000,20000,20000,20000,] , city: "Mumbai"})
+db.employee.insertOne({fname: "Rohit", salary:[19000,13000,19000,20000,20000,20000,10000,10000,15000,20000,20000,20000,] , city: "Pune"})
+db.employee.insertOne({fname: "Rahul", salary:[19000,13000,19000,20000,20000,20000,10000,10000,15000,20000,20000,20000,] , city: "Pune"})
+db.employee.insertOne({fname: "Raju", salary:[29000,23000,19000,20000,20000,20000,10000,10000,15000,20000,20000,20000,] , city: "Pune"})
+db.employee.insertOne({fname: "Eve", salary:[28000,23000,19000,20000,20000,20000,10000,10000,15000,20000,20000,20000,] , city: "Shirdi"})
+db.employee.insertOne({fname: "Eva", salary:[98000,23000,19000,20000,20000,20000,10000,10000,15000,20000,20000,20000,] , city: "Shirdi"})
+
+
+ db.employee.find().pretty()
+{
+	"_id" : ObjectId("5e995f21c2effb00b597af85"),
+	"fname" : "Max",
+	"salary" : [
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Pune"
+}
+{
+	"_id" : ObjectId("5e9970b0f5369f5756825426"),
+	"fname" : "Maxi",
+	"salary" : [
+		12000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Gurgaon"
+}
+{
+	"_id" : ObjectId("5e9970c5f5369f5756825427"),
+	"fname" : "Maxi",
+	"salary" : [
+		12000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Gurgaon"
+}
+{
+	"_id" : ObjectId("5e997126f5369f5756825428"),
+	"fname" : "Evleen",
+	"salary" : [
+		12000,
+		12000,
+		15000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Bengaluru"
+}
+{
+	"_id" : ObjectId("5e99712ff5369f5756825429"),
+	"fname" : "Saurav",
+	"salary" : [
+		60000,
+		10000,
+		15000,
+		20000,
+		25000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Gurgaon"
+}
+{
+	"_id" : ObjectId("5e997136f5369f575682542a"),
+	"fname" : "Amey",
+	"salary" : [
+		12000,
+		13000,
+		19000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Mumbai"
+}
+{
+	"_id" : ObjectId("5e9971a0f5369f575682542b"),
+	"fname" : "Yash",
+	"salary" : [
+		6000,
+		13000,
+		19000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Mumbai"
+}
+{
+	"_id" : ObjectId("5e9971a7f5369f575682542c"),
+	"fname" : "Aadesh",
+	"salary" : [
+		12000,
+		13000,
+		19000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Mumbai"
+}
+{
+	"_id" : ObjectId("5e9971aef5369f575682542d"),
+	"fname" : "Rohit",
+	"salary" : [
+		19000,
+		13000,
+		19000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Pune"
+}
+{
+	"_id" : ObjectId("5e9971b5f5369f575682542e"),
+	"fname" : "Rahul",
+	"salary" : [
+		19000,
+		13000,
+		19000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Pune"
+}
+{
+	"_id" : ObjectId("5e9971bbf5369f575682542f"),
+	"fname" : "Raju",
+	"salary" : [
+		29000,
+		23000,
+		19000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Pune"
+}
+{
+	"_id" : ObjectId("5e9971f9f5369f5756825430"),
+	"fname" : "Eve",
+	"salary" : [
+		28000,
+		23000,
+		19000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Shirdi"
+}
+{
+	"_id" : ObjectId("5e9971fff5369f5756825431"),
+	"fname" : "Eva",
+	"salary" : [
+		98000,
+		23000,
+		19000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Shirdi"
+}
+
+
+2.   to display the fields _id, fname  for all the documents in the collection.
+
+db.employee.find({ },{fname:1}).pretty()
+{ "_id" : ObjectId("5e995f21c2effb00b597af85"), "fname" : "Max" }
+{ "_id" : ObjectId("5e9970b0f5369f5756825426"), "fname" : "Maxi" }
+{ "_id" : ObjectId("5e9970c5f5369f5756825427"), "fname" : "Maxi" }
+{ "_id" : ObjectId("5e997126f5369f5756825428"), "fname" : "Evleen" }
+{ "_id" : ObjectId("5e99712ff5369f5756825429"), "fname" : "Saurav" }
+{ "_id" : ObjectId("5e997136f5369f575682542a"), "fname" : "Amey" }
+{ "_id" : ObjectId("5e9971a0f5369f575682542b"), "fname" : "Yash" }
+{ "_id" : ObjectId("5e9971a7f5369f575682542c"), "fname" : "Aadesh" }
+{ "_id" : ObjectId("5e9971aef5369f575682542d"), "fname" : "Rohit" }
+{ "_id" : ObjectId("5e9971b5f5369f575682542e"), "fname" : "Rahul" }
+{ "_id" : ObjectId("5e9971bbf5369f575682542f"), "fname" : "Raju" }
+{ "_id" : ObjectId("5e9971f9f5369f5756825430"), "fname" : "Eve" }
+{ "_id" : ObjectId("5e9971fff5369f5756825431"), "fname" : "Eva" }
+
+
+3. to display the all fields   but exclude the field id for all the documents in the collection.
+
+
+ db.employee.find({ },{_id:0}).pretty()
+{
+	"fname" : "Max",
+	"salary" : [
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Pune"
+}
+{
+	"fname" : "Maxi",
+	"salary" : [
+		12000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Gurgaon"
+}
+{
+	"fname" : "Maxi",
+	"salary" : [
+		12000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Gurgaon"
+}
+{
+	"fname" : "Evleen",
+	"salary" : [
+		12000,
+		12000,
+		15000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Bengaluru"
+}
+{
+	"fname" : "Saurav",
+	"salary" : [
+		60000,
+		10000,
+		15000,
+		20000,
+		25000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Gurgaon"
+}
+{
+	"fname" : "Amey",
+	"salary" : [
+		12000,
+		13000,
+		19000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Mumbai"
+}
+{
+	"fname" : "Yash",
+	"salary" : [
+		6000,
+		13000,
+		19000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Mumbai"
+}
+{
+	"fname" : "Aadesh",
+	"salary" : [
+		12000,
+		13000,
+		19000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Mumbai"
+}
+{
+	"fname" : "Rohit",
+	"salary" : [
+		19000,
+		13000,
+		19000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Pune"
+}
+{
+	"fname" : "Rahul",
+	"salary" : [
+		19000,
+		13000,
+		19000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Pune"
+}
+{
+	"fname" : "Raju",
+	"salary" : [
+		29000,
+		23000,
+		19000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Pune"
+}
+{
+	"fname" : "Eve",
+	"salary" : [
+		28000,
+		23000,
+		19000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Shirdi"
+}
+{
+	"fname" : "Eva",
+	"salary" : [
+		98000,
+		23000,
+		19000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Shirdi"
+}
+
+4. to display the first 5 Employees  
+
+db.employee.find().limit(5)
+{ "_id" : ObjectId("5e995f21c2effb00b597af85"), "fname" : "Max", "salary" : [ 10000, 10000, 15000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Pune" }
+{ "_id" : ObjectId("5e9970b0f5369f5756825426"), "fname" : "Maxi", "salary" : [ 12000, 10000, 15000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Gurgaon" }
+{ "_id" : ObjectId("5e9970c5f5369f5756825427"), "fname" : "Maxi", "salary" : [ 12000, 10000, 15000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Gurgaon" }
+{ "_id" : ObjectId("5e997126f5369f5756825428"), "fname" : "Evleen", "salary" : [ 12000, 12000, 15000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Bengaluru" }
+{ "_id" : ObjectId("5e99712ff5369f5756825429"), "fname" : "Saurav", "salary" : [ 60000, 10000, 15000, 20000, 25000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Gurgaon" }
+
+
+5 .to display the next 5 Employees after skipping first 5 
+
+db.employee.find().skip(5).limit(5)
+{ "_id" : ObjectId("5e997136f5369f575682542a"), "fname" : "Amey", "salary" : [ 12000, 13000, 19000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Mumbai" }
+{ "_id" : ObjectId("5e9971a0f5369f575682542b"), "fname" : "Yash", "salary" : [ 6000, 13000, 19000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Mumbai" }
+{ "_id" : ObjectId("5e9971a7f5369f575682542c"), "fname" : "Aadesh", "salary" : [ 12000, 13000, 19000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Mumbai" }
+{ "_id" : ObjectId("5e9971aef5369f575682542d"), "fname" : "Rohit", "salary" : [ 19000, 13000, 19000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Pune" }
+{ "_id" : ObjectId("5e9971b5f5369f575682542e"), "fname" : "Rahul", "salary" : [ 19000, 13000, 19000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Pune" }
+
+6.  to find the Employee who stay in Gurgaon city 
+db.employee.find({city:"Gurgaon"}).pretty()
+{
+	"_id" : ObjectId("5e9970b0f5369f5756825426"),
+	"fname" : "Maxi",
+	"salary" : [
+		12000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Gurgaon"
+}
+{
+	"_id" : ObjectId("5e9970c5f5369f5756825427"),
+	"fname" : "Maxi",
+	"salary" : [
+		12000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Gurgaon"
+}
+{
+	"_id" : ObjectId("5e99712ff5369f5756825429"),
+	"fname" : "Saurav",
+	"salary" : [
+		60000,
+		10000,
+		15000,
+		20000,
+		25000,
+		20000,
+		10000,
+		10000,
+		15000,
+		20000,
+		20000,
+		20000
+	],
+	"city" : "Gurgaon"
+}
+
+7.  to find the Employee who jan salary is less than 20000
+db.employee.find({"salary.0":{$lt: 20000}})
+{ "_id" : ObjectId("5e995f21c2effb00b597af85"), "fname" : "Max", "salary" : [ 10000, 10000, 15000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Pune" }
+{ "_id" : ObjectId("5e9970b0f5369f5756825426"), "fname" : "Maxi", "salary" : [ 12000, 10000, 15000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Gurgaon" }
+{ "_id" : ObjectId("5e9970c5f5369f5756825427"), "fname" : "Maxi", "salary" : [ 12000, 10000, 15000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Gurgaon" }
+{ "_id" : ObjectId("5e997126f5369f5756825428"), "fname" : "Evleen", "salary" : [ 12000, 12000, 15000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Bengaluru" }
+{ "_id" : ObjectId("5e997136f5369f575682542a"), "fname" : "Amey", "salary" : [ 12000, 13000, 19000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Mumbai" }
+{ "_id" : ObjectId("5e9971a0f5369f575682542b"), "fname" : "Yash", "salary" : [ 6000, 13000, 19000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Mumbai" }
+{ "_id" : ObjectId("5e9971a7f5369f575682542c"), "fname" : "Aadesh", "salary" : [ 12000, 13000, 19000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Mumbai" }
+{ "_id" : ObjectId("5e9971aef5369f575682542d"), "fname" : "Rohit", "salary" : [ 19000, 13000, 19000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Pune" }
+{ "_id" : ObjectId("5e9971b5f5369f575682542e"), "fname" : "Rahul", "salary" : [ 19000, 13000, 19000, 20000, 20000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Pune" }
+
+8.  to find the Employee who jan salary is less than 20000 and who stay in Gurgaon city.
+
+db.employee.find({city: "Gurgaon", "salary.0":{$gt: 20000}})
+{ "_id" : ObjectId("5e99712ff5369f5756825429"), "fname" : "Saurav", "salary" : [ 60000, 10000, 15000, 20000, 25000, 20000, 10000, 10000, 15000, 20000, 20000, 20000 ], "city" : "Gurgaon" }
+
+
+9. to find the total salary of jan month for all the employee.
+
+db.employee.aggregate([{ "$group": {
+    "_id": null,
+    "totalSalary": {
+      "$sum": {
+        "$sum": "$salary.0"
+      }
+    }
+  }}
+])
+10. count how any employee stay in Gurgaon city.
+
+db.employee.find({city:"Gurgaon"}).count()
+3
+
+
