@@ -1,6 +1,7 @@
 package com.sapient.numbers;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Command_Line1 {
 	ArrayList<Integer> arrayOfNumbers= new ArrayList<Integer>();
@@ -19,6 +20,9 @@ public class Command_Line1 {
 		}
 		System.out.println("Sum= " + sum);
 		System.out.println("Average= " + sum/arrayOfNumbers.size());
+		Collections.sort(arrayOfNumbers);
+		System.out.println("Min= " + arrayOfNumbers.get(0));
+		System.out.println("Max= " + arrayOfNumbers.get(arrayOfNumbers.size() - 1));
 	}
 	public void displayData() {
 		for(int number : arrayOfNumbers) {
