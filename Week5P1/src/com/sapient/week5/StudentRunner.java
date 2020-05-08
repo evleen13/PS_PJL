@@ -39,7 +39,8 @@ public class StudentRunner {
 
 		System.out.println("Students that belong to " + city);
 		displayList(commonCityList);
-
+		
+		
 		System.out.println("Sort by Name");
 		Collections.sort(list, new compareByName());
 
@@ -49,8 +50,10 @@ public class StudentRunner {
 		Collections.sort(list, new compareByCity());
 
 		displayList(list);
+		System.out.println("Enter the id:");
 		int id = scanner.nextInt();
-		findStudentById(list, id);
+		Student studentById = findStudentById(list, id);
+		studentById.display();
 		scanner.close();
 
 	}
@@ -76,10 +79,11 @@ public class StudentRunner {
 		// TODO Auto-generated method stub
 		List<Student> commonCityList = new ArrayList<Student>();
 		for (Student student : list) {
-			if (student.getCity() == city) {
+			if (student.getCity().equalsIgnoreCase(city) ) {
 				commonCityList.add(student);
 			}
 		}
+		displayList(commonCityList);
 		return commonCityList;
 	}
 }
