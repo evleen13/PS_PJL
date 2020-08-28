@@ -1,0 +1,14 @@
+1. Write shell scripts / batch files to list out all the mvn goals available
+- mvn help:describe -Dplugin=org.apache.maven.plugins:maven-war-plugin\ -Ddetail=true
+
+
+2. Write shell scripts / batch files to demonstrate leveraging local copy of maven within the 
+project; and a readme.md on how this is beneficial?
+- 
+
+3. Write shell scripts / batch files to extract & save the build logs to a file instead of console output
+- mvn -X install  > test.log
+
+4. Write shell scripts / batch files to prevent maven from downloading dependencies every time / 
+Make maven work without internet
+- mvn clean install -o 
