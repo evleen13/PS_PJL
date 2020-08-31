@@ -9,10 +9,15 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionProcessing {
 	List<Transaction> transactions;
+
+	public TransactionProcessing() {
+		this.transactions = new ArrayList<Transaction>();
+	}
 
 	public void readFromCSV() {
 		Path pathToFile = Paths.get("Sample_Data_Fee_Calculator.csv");
@@ -20,17 +25,15 @@ public class TransactionProcessing {
 		try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
 			// read the first line from the text file
 			String line = br.readLine();
+			line = br.readLine();
 			while (line != null) {
 				// use string.split to load a string array with the values from
 				// each line of the
 				// file
-				System.out.println("Reading from file");
 				String[] attributes = line.split(",");
 				Transaction transaction = createTransaction(attributes);
-
 				// adding book into ArrayList
 				transactions.add(transaction);
-
 				// read next line before looping
 				// if end of file reached, line would be null
 				line = br.readLine();
@@ -48,15 +51,14 @@ public class TransactionProcessing {
 		String clientId = metadata[1];
 		String securityId = metadata[2];
 		String transactionType = metadata[3];
-		//DateTimeFormatterBuilder dateTimeFormatterBuilder = new DateTimeFormatterBuilder()
-	   //         .append(DateTimeFormatter.ofPattern("[MM/dd/yyyy]" + "[MM-dd-yyyy]"));
+		DateTimeFormatterBuilder dateTimeFormatterBuilder = new DateTimeFormatterBuilder()
+				.append(DateTimeFormatter.ofPattern("[MM/dd/yyyy]" + "[MM-dd-yyyy]"));
 
-	   // DateTimeFormatter formatter = dateTimeFormatterBuilder.toFormatter();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
+		DateTimeFormatter formatter = dateTimeFormatterBuilder.toFormatter();
+		// DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy");
 		LocalDate transactionDate = LocalDate.parse(metadata[4], formatter);
 		double marketValue = Double.parseDouble(metadata[5]);
 		String priorityFlag = metadata[6];
-
 		// create and return book of this metadata
 		return new Transaction(externalTransactionId, clientId, securityId, transactionType, transactionDate,
 				marketValue, priorityFlag);
