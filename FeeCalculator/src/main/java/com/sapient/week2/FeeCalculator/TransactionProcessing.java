@@ -12,8 +12,14 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+@Service
 public class TransactionProcessing {
 	List<Transaction> transactions;
+
+	public List<Transaction> getTransactions() {
+		return transactions;
+	}
 
 	public TransactionProcessing() {
 		this.transactions = new ArrayList<Transaction>();
@@ -69,5 +75,66 @@ public class TransactionProcessing {
 			System.out.println(b);
 		}
 
+	}
+
+	public void processTransactions() {
+		// Normal transaction
+		processNormalTransaction();
+		// Intra day tx
+		processIntraDayTransaction();
+	}
+
+	private void processIntraDayTransaction() {
+		
+		for(int i=0;i<transactions.size();i++) {
+			String clientId1=transactions.get(i).getClientId();
+			
+			String securityId1 =transactions.get(i).getSecurityId();
+			LocalDate transactionDate1 =transactions.get(i).getTransactionDate();
+			String transactionType1 = transactions.get(i).getTransactionType();
+			for(int j=i+1;j<transactions.size();j++) {
+				String clientId2=transactions.get(j).getClientId();
+				String securityId2 =transactions.get(j).getSecurityId();
+				LocalDate transactionDate2 =transactions.get(j).getTransactionDate();
+				String transactionType2 = transactions.get(j).getTransactionType();
+				if(clientId1.equals(clientId2) && securityId1.equals(securityId2) && transactionDate1.equals(transactionDate2)) {
+					System.out.println("Intraday2");
+					if(transactionType1.equals("BUY") && transactionType2.equals("SELL") || transactionType1.equals("SELL") && transactionType2.equals("BUY")) {
+						long fee1=transactions.get(i).getProcessingFee();
+						long fee2=transactions.get(j).getProcessingFee();
+						transactions.get(i).setProcessingFee(fee1+10);
+						transactions.get(j).setProcessingFee(fee2+10);
+					}
+					if(transactionType1.equals("DEPOSIT") && transactionType2.equals("WITHDRAW") || transactionType1.equals("DEPOSIT") && transactionType2.equals("WITHDRAW")) {
+						long fee1=transactions.get(i).getProcessingFee();
+						long fee2=transactions.get(j).getProcessingFee();
+						transactions.get(i).setProcessingFee(fee1+10);
+						transactions.get(j).setProcessingFee(fee2+10);
+					}
+				}
+			}
+		}
+	}
+
+	private void processNormalTransaction() {
+		long fee;
+		for (Transaction tx : transactions) {
+
+			// for high priority tx charge $500
+			if (tx.getPriorityFlag().equals("Y")) {
+				fee = tx.getProcessingFee();
+				tx.setProcessingFee(fee + 500);
+			} else if (tx.getPriorityFlag().equals("N")) {
+				String type = tx.getTransactionType();
+				if (type.equals("SELL") || type.equals("WITHDRAW")) {
+					fee = tx.getProcessingFee();
+					tx.setProcessingFee(fee + 100);
+				}
+				if (type.equals("BUY") || type.equals("DEPOSIT")) {
+					fee = tx.getProcessingFee();
+					tx.setProcessingFee(fee + 50);
+				}
+			}
+		}
 	}
 }

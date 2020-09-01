@@ -7,8 +7,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FeeCalculatorApplication {
 	
 	public static void main(String[] args) {
+		
 		TransactionProcessing obj= new TransactionProcessing();
 		obj.readFromCSV();
+		System.out.println("BEfore Processing");
+		obj.printTransactions();
+		obj.processTransactions();
+		System.out.println("After Processing");
 		obj.printTransactions();
 		SpringApplication.run(FeeCalculatorApplication.class, args);
 	}
