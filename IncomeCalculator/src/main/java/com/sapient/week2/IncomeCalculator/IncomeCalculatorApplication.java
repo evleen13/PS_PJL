@@ -10,7 +10,7 @@ public class IncomeCalculatorApplication {
 		PersonImpl obj=new PersonImpl();
 		obj.readData("input.csv");
 		obj.printList();
-		obj.writeData("output_g.csv");
+		obj.processAndWriteToCSV("output_g.csv");
 		SpringApplication.run(IncomeCalculatorApplication.class, args);
 	}
 

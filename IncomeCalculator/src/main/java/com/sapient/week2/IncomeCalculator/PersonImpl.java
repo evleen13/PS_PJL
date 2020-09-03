@@ -1,18 +1,24 @@
 package com.sapient.week2.IncomeCalculator;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
+
+import com.opencsv.CSVWriter;
 
 @Component
 public class PersonImpl {
@@ -77,29 +83,94 @@ public class PersonImpl {
 	private Double convertToUSD(String currency, Double income) {
 		if (currency.equals("INR")) {
 			// 1 INR= 0.015 USD
-			income *= 0.015;
+			income /= 66;
 		} else if (currency.equals("HKD")) {
 			// 1 HKD= 0.125 USD
-			income *= 0.125;
+			income /= 8;
 		} else if (currency.equals("SGP")) {
 			// 1 SGD= 0.667 USD
-			income *= 0.667;
+			income /= 1.5;
 		} else if (currency.equals("GBP")) {
 			// 1 GBP= 1.492 USD
-			income *= 1.492;
+			income /= 0.67;
 		}
 		return income;
 	}
 
-	public void writeData(String string) {
-		Map<String, List<Person>> personCustomList = new HashMap<>();
-		// personCustomList=
+	public void processAndWriteToCSV(String string) {
 
-		personCustomList=personList.stream().collect(Collectors.groupingBy(Person::getCountry));
-		
-		System.out.println("Person grouped by country: " + personCustomList);
-		
-		// personCustomList=personList.stream().collect(Collectors.groupingBy(per->per.))
+		/*
+		 * personList.stream() .collect(Collectors.groupingBy(Person::getCountry,
+		 * Collectors.summingDouble(Person::getIncome))) .forEach((country, income) ->
+		 * System.out.println(country + "\t" + income));
+		 */
+
+		List<Person> groupedList = new ArrayList<Person>();
+		// grouping by country and gender thereby summing average income
+		personList.stream()
+				.collect(Collectors.groupingBy(Person::getCountry,
+						Collectors.groupingBy(Person::getGender, Collectors.summingDouble(Person::getIncome))))
+				.forEach((String country, Map<String, Double> d) -> {
+					for (Entry<String, Double> entry : d.entrySet()) {
+						String k = entry.getKey();
+						Double v = entry.getValue();
+						groupedList.add(new Person(country, k, v));
+					}
+				});
+		Comparator<Person> countryComparator = new Comparator<Person>() {
+
+			public int compare(Person p1, Person p2) {
+				String country1 = p1.getCountry();
+				String country2 = p2.getCountry();
+
+				// ascending order
+				return country1.compareTo(country2);
+
+			}
+		};
+		Comparator<Person> genderComparator = new Comparator<Person>() {
+
+			public int compare(Person p1, Person p2) {
+				String gender1 = p1.getGender();
+				String gender2 = p2.getGender();
+
+				// ascending order
+				return gender1.compareTo(gender2);
+
+			}
+		};
+		Collections.sort(groupedList, countryComparator.thenComparing(genderComparator));
+		System.out.println(groupedList);
+		writeDataToCSV(string, groupedList);
+	}
+
+	private void writeDataToCSV(String string, List<Person> groupedList) {
+		File file = new File(string);
+		try {
+			// create FileWriter object with file as parameter
+			FileWriter outputfile = new FileWriter(file);
+
+			// create CSVWriter object filewriter object as parameter
+			CSVWriter writer = new CSVWriter(outputfile);
+
+			// adding header to csv
+			String[] header = { "Country", "Gender", "Average Income" };
+			writer.writeNext(header);
+			for (Person p : groupedList) {
+				String country = p.getCountry();
+				String gender= p.getGender();
+				String income= Double.toString(p.getIncome()) ;
+				String [] data= {country,gender,income};
+				writer.writeNext(data);
+ 			}
+			// add data to csv
+			
+			// closing writer connection
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
