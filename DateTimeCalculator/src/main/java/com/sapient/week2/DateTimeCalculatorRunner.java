@@ -1,27 +1,34 @@
 package com.sapient.week2;
 
+/*import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.Scanner;
+import java.util.Scanner;*/
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
 public class DateTimeCalculatorRunner {
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
+		SpringApplication.run(DateTimeCalculatorRunner.class, args);
+
+		/*Scanner scanner = new Scanner(System.in);
 		String dateString1;
 		String dateString2;
 		int choice = 0;
-		LocalDate date1, date2;
+		LocalDate date1, date2,result;
 		int numberOfDays;
 		String dateString;
 		LocalDate date = null;
 		// Accepting dates and converting them to LocalDateTime format
-		System.out.println("Welcome");
+		System.out.println("Welcome");*/	
 		/*
 		 * System.out.println("Enter Date 1 in the format yyyy-MM-dd: "); dateString1 =
 		 * scanner.next();
 		 * System.out.println("Enter Date 2 in the format yyyy-MM-dd: "); dateString2 =
 		 * scanner.next();
 		 */
-		dateString1 = "2020-12-12";
+		/*dateString1 = "2020-12-12";
 		dateString2 = "2012-12-31";
 		date1 = DateTimeCalculator.convertStringToDate(dateString1);
 		System.out.println("Date 1: " + date1);
@@ -41,10 +48,10 @@ public class DateTimeCalculatorRunner {
 			choice = scanner.nextInt();
 			switch (choice) {
 			case 1:
-				obj.addDates();
+				result=obj.addDates();
 				break;
 			case 2:
-				obj.subtractDates();
+				result=obj.subtractDates();
 				break;
 			case 3:
 				System.out.println("Enter Date in the format yyyy-MM-dd: ");
@@ -52,7 +59,7 @@ public class DateTimeCalculatorRunner {
 				date = DateTimeCalculator.convertStringToDate(dateString);
 				System.out.println("Enter the number of days you want to add:");
 				numberOfDays = scanner.nextInt();
-				DateTimeCalculator.addDays(date, numberOfDays);
+				result=DateTimeCalculator.addDays(date, numberOfDays);
 				break;
 			case 4:
 				System.out.println("Enter Date in the format yyyy-MM-dd: ");
@@ -60,25 +67,25 @@ public class DateTimeCalculatorRunner {
 				date = DateTimeCalculator.convertStringToDate(dateString);
 				System.out.println("Enter the number of days you want to subtract:");
 				numberOfDays = scanner.nextInt();
-				DateTimeCalculator.subtractDays(date, numberOfDays);
+				result=DateTimeCalculator.subtractDays(date, numberOfDays);
 				break;
 			case 5:
 				System.out.println("Enter Date in the format yyyy-MM-dd: ");
 				dateString = scanner.next();
 				date = DateTimeCalculator.convertStringToDate(dateString);
-				DateTimeCalculator.findDayOfTheWeek(date);
+				DayOfWeek dayOfWeek=DateTimeCalculator.findDayOfTheWeek(date);
 				break;
 			case 6:
 				System.out.println("Enter Date in the format yyyy-MM-dd: ");
 				dateString = scanner.next();
 				date = DateTimeCalculator.convertStringToDate(dateString);
-				DateTimeCalculator.getWeekNumber(date);
+				int weekNumber=DateTimeCalculator.getWeekNumber(date);
 				break;
 
 			default:
 				System.out.println("Please enter a valid choice");
 			}
 		} while (choice != 6);
-		scanner.close();
+		scanner.close();*/
 	}
 }
